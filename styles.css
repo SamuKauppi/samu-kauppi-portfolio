@@ -63,3 +63,72 @@ section {
         margin: 10px; /* Adjust the margin for smaller screens */
     }
 }
+
+.project {
+    overflow: hidden; /* Clear the float */
+}
+
+.project-details {
+    margin-right: 200px; /* Adjust the margin based on the image width on the right */
+}
+
+.project-image-right {
+    float: right;
+    max-width: 180px; /* Adjust the width as needed */
+    margin: 10px;
+}
+
+.project-image-between {
+    max-width: 100%; /* Make the image responsive */
+    margin: 20px 0; /* Add vertical margin between paragraphs */
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0; /* Adjust the margin as needed */
+    background-size: cover;
+    background-position: center;
+    width: 50%; /* Set the width to half of the container */
+    height: 0; /* Initially set height to 0 */
+    padding-bottom: 50%; /* Set the padding to create a square based on the width */
+    position: relative; /* Position relative for absolute positioning of borders */
+    transition: background-color 0.3s, color 0.3s; /* Add transition for background color and text color */
+}
+
+.button span {
+    flex-grow: 1; /* Allow the text to take up remaining space */
+}
+
+/* Add borders to create the border effect */
+.button:before,
+.button:after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 4px); /* Adjust the width to include thicker borders */
+    height: calc(100% + 4px); /* Adjust the height to include thicker borders */
+    border: 2px solid #fff; /* Set thicker border and white color */
+    border-radius: 5px;
+    top: -2px; /* Adjust the top position to cover the top border */
+    left: -2px; /* Adjust the left position to cover the left border */
+    z-index: -1; /* Place the borders below the button content */
+    transition: border-color 0.3s; /* Add transition for border color */
+}
+
+/* Hover effect */
+.button:hover:before,
+.button:hover:after {
+    border-color: #000; /* Change border color on hover to black */
+}
+
+.button:hover {
+    background-color: #000; /* Change background color on hover to black */
+    color: #fff; /* Change text color on hover to white */
+}
+
