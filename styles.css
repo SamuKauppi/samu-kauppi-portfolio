@@ -85,7 +85,6 @@ section {
 }
 
 .project-image-between {
-    max-width: 100%; /* Make the image responsive */
     margin: 20px 0; /* Add vertical margin between paragraphs */
 }
 
