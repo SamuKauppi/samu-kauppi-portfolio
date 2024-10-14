@@ -1,3 +1,4 @@
+/* Basic */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -20,6 +21,7 @@ header p {
     margin: 5px 0;
 }
 
+/* Navigation */
 nav {
     position: fixed;
     top: 0;
@@ -57,83 +59,226 @@ nav a:hover {
     border-color: #333;
 }
 
-/* Added style for content margins */
-section {
-    max-width: 1000px; /* Adjust the maximum width as needed */
-    margin: 20px auto; /* Center content and add vertical margin */
+/* Displaying projects */
+
+.projects {
+    display: flex;
+    flex-direction: column; /* Stack projects vertically */
+    gap: 20px; /* Add space between each project */
+    max-width: 1000px; /* Limit the width of the whole section */
+    margin: 20px auto; /* Center the section and add vertical margin */
+    padding: 10px; /* Optional padding inside the container */
 }
 
-/* Responsive adjustments */
+/* Ensure the anchor tag fills the space */
+a.project-link {
+    display: block;
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Inherit the text color */
+}
+
+/* Style the project container */
+.project {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between image and text */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for the entire project container */
+a.project-link:hover .project {
+    transform: translateY(-5px); /* Slight move up on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+/* Image styling */
+.project .button {
+    width: 180px;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0; /* Prevent image from shrinking */
+    transition: transform 0.3s ease; /* Smooth hover effect for the image */
+}
+
+/* Project details grow to fill space */
+.project-details {
+    flex-grow: 1;
+}
+
+.project-details h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.project-details p {
+    margin: 5px 0 0;
+}
+
+/* Additional hover effect for the image */
+a.project-link:hover .button {
+    transform: scale(1.05); /* Slight zoom-in effect */
+}
+
+/* Responsive design for smaller screens */
 @media only screen and (max-width: 600px) {
-    section {
-        margin: 10px; /* Adjust the margin for smaller screens */
+    .project {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project .button {
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+    }
+
+    .project-details {
+        margin-top: 20px;
     }
 }
 
-.project {
-    overflow: hidden; /* Clear the float */
+
+/* About Me */
+/* General styles for the about section */
+.about {
+    max-width: 1000px;  /* Limit the width of the section */
+    margin: 20px auto;  /* Center the section and add margin */
+    padding: 20px;  /* Optional padding */
+    display: flex;  /* Flexbox layout */
+    align-items: center;  /* Vertically align the image and text */
+    gap: 20px;  /* Space between image and text */
 }
 
-.project-details {
-    margin-right: 200px; /* Adjust the margin based on the image width on the right */
+/* Styling for the image */
+.about-image {
+    width: 250px;  /* Adjust the width of the image */
+    height: auto;  /* Maintain aspect ratio */
+    border-radius: 50%;  /* Optional: Make the image round */
+    object-fit: cover;  /* Ensure the image doesn't stretch */
+    flex-shrink: 0;  /* Prevent the image from shrinking */
 }
 
-.project-image-right {
-    float: right;
-    max-width: 180px; /* Adjust the width as needed */
-    margin: 10px;
+/* Styling for the text section */
+.about-text {
+    flex-grow: 1;  /* Let the text take up remaining space */
 }
 
-.project-image-between {
-    margin: 20px 0; /* Add vertical margin between paragraphs */
+.about-text h2 {
+    font-size: 2em;  /* Adjust heading size */
+    margin-top: 0;  /* Remove top margin */
 }
 
-.button {
+.about-text p {
+    font-size: 1.1em;  /* Adjust paragraph size */
+    line-height: 1.5;  /* Improve readability */
+}
+
+/* Responsive design for smaller screens */
+@media only screen and (max-width: 600px) {
+    .about {
+        flex-direction: column;  /* Stack image and text vertically */
+        text-align: center;  /* Center-align text */
+    }
+
+    .about-image {
+        width: 150px;  /* Reduce image size on small screens */
+        margin-bottom: 20px;  /* Add margin below the image */
+    }
+}
+
+
+/* Project display */
+/* Container for the whole project template */
+.project-template {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 50px;
+    gap: 20px;
+}
+
+/* Project Information section (General info) */
+.project-info {
+    flex-basis: 40%; /* Take up 40% of the width */
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+}
+
+.project-info h2 {
+    margin-bottom: 10px;
+}
+
+.project-info ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.project-info ul li {
+    margin-bottom: 8px;
+}
+
+.project-info a {
+    color: #007bff; /* Link color */
     text-decoration: none;
-    background-color: #333;
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0; /* Adjust the margin as needed */
-    background-size: cover;
-    background-position: center;
-    width: 50%; /* Set the width to half of the container */
-    height: 0; /* Initially set height to 0 */
-    padding-bottom: 50%; /* Set the padding to create a square based on the width */
-    position: relative; /* Position relative for absolute positioning of borders */
-    transition: background-color 0.3s, color 0.3s; /* Add transition for background color and text color */
 }
 
-.button span {
-    flex-grow: 1; /* Allow the text to take up remaining space */
+.project-info a:hover {
+    text-decoration: underline;
 }
 
-/* Add borders to create the border effect */
-.button:before,
-.button:after {
-    content: "";
-    position: absolute;
-    width: calc(100% + 4px); /* Adjust the width to include thicker borders */
-    height: calc(100% + 4px); /* Adjust the height to include thicker borders */
-    border: 2px solid #fff; /* Set thicker border and white color */
-    border-radius: 5px;
-    top: -2px; /* Adjust the top position to cover the top border */
-    left: -2px; /* Adjust the left position to cover the left border */
-    z-index: -1; /* Place the borders below the button content */
-    transition: border-color 0.3s; /* Add transition for border color */
+/* Project Image */
+.project-image {
+    flex-basis: 50%; /* Take up 50% of the width */
+    text-align: center; /* Center the image */
 }
 
-/* Hover effect */
-.button:hover:before,
-.button:hover:after {
-    border-color: #000; /* Change border color on hover to black */
+.project-image img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
 }
 
-.button:hover {
-    background-color: #000; /* Change background color on hover to black */
-    color: #fff; /* Change text color on hover to white */
+/* Project Description section */
+.project-description {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
 }
 
+.project-description p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Inline images within the project description */
+.inline-image {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: round the corners */
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+    .project-template {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project-info {
+        border-right: none;
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .project-image {
+        margin-bottom: 20px;
+    }
+}
