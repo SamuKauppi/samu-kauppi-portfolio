@@ -48,6 +48,7 @@
             own dices. Players take turns bidding on how many of some dice value there is. Player can only call a bid
             that has a higher bid count or same bid count with higher dice value.
         </p>
+        <img src="./content/liars_dice_unity_screenshot_1.jpg" alt="Screenshot 1" class="inline-image">
 
         <p>
             Players can also call the previous player a liar. When this happens all the dices are revealed, and the dice
@@ -56,47 +57,26 @@
             that one’s are wild and count towards every die.
         </p>
 
-        <img src="./content/liars_dice_c_screenshot_1.jpg" alt="Screenshot 1" class="inline-image">
+        <img src="./content/liars_dice_unity_screenshot_2.jpg" alt="Screenshot 2" class="inline-image">
 
         <p>
-            Liar’s dice is a game I have been interested in for a long time and this Metropolia course project was a
-            perfect opportunity to make an AI for it. My favourite project ever was the chess AI that was created in
-            Metropolia’s data structures and algorithms course and this game kind of reminded me of that. Obviously,
-            Liar’s dice is much simpler game than chess but calculating odds for an AI in game where there is a lot of
-            hidden information is hard to get right.
+            Most Interesting part of this project was using socket IO to connect multiple clients to one server. I am
+            not the most experienced with JavaScript which made this project challenging, but our course had a fantastic
+            teacher, and JavaScript is not the hardest language.
         </p>
 
-        <p>
-            The first thing I had to figure out when creating an AI for Liar’s dice was to find an algorithm that
-            calculates the odds for bids made by the player. After doing some research the best function for the job was
-            to use binominal distribution:
-        </p>
-        <div>
-            $$\binom{n}{k} p^k (1 - p)^{n - k} $$
-        </div>
-        <p>
-            The binomial distribution function describes the probability of having exactly <b>k successes</b> in <b> n
-                independent
-                trials</b>, where each trial has a <b> constant probability of success p</b>. In the context of Liar’s
-            Dice this gives
-            estimate on how likely the previous bid was true.
-        </p>
-        <p>
-            And this is where making the AI became hard because the AI needs to lie and somehow figure out if the player
-            is likely to lie. I used various ways to simulate this, and it could be refined but overall, it plays okay.
-        </p>
-        <p>
-            The next step after creating the AI was to make the display. I used SDL library for graphics and SDL_ttf for
-            displaying text. This wasn’t anything hard but designing a good interface is not my speciality. The most
-            interesting portion of displaying the game was to figure out a was to display the die and making the class
-            for it.
-        </p>
+        <img src="./content/liars_dice_unity_screenshot_3.jpg" alt="Screenshot 2" class="inline-image">
 
         <p>
-            Overall, this project was a lot of fun and made me love C++ event more!
+            In addition to Unity and JavaScript I also utilized MySql to make a very simple database. During our first
+            year of school, we made a flight map game that frequently used a database, so I had a decent amount of
+            experience in handling a database. In that project the database was complex but in this project the database
+            was simple and just stored some data about the winner.
         </p>
-
-        <img src="./content/liars_dice_c_screenshot_2.jpg" alt="Screenshot 2" class="inline-image">
+        
+        <p>
+            Overall, this project was a great learning opportunity on how to use multiple different techniques.
+        </p>
 
     </section>
 </body>
