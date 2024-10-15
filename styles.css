@@ -9,7 +9,7 @@ header {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 4.5%;
 }
 
 header h1 {
@@ -18,7 +18,18 @@ header h1 {
 }
 
 header p {
-    margin: 5px 0;
+    margin: 0.5% 0;
+}
+
+@media only screen and (max-width: 600px)
+{
+    header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 4.5%;
+        padding-top: 10%;
+    }
 }
 
 /* Navigation */
@@ -26,11 +37,11 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 1%;
-    padding-bottom: 1%;
     width: 100%;
-    background-color: #333; /* Add background color to the navigation */
-    z-index: 1000; /* Set a high z-index to ensure it's above other elements */
+    background-color: #333;
+    /* Add background color to the navigation */
+    z-index: 1000;
+    /* Set a high z-index to ensure it's above other elements */
 }
 
 nav ul {
@@ -41,14 +52,17 @@ nav ul {
 
 nav li {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 1%;
+    padding-top: 1.5%;
+    padding-bottom: 2%;
+    padding-left: 1%;
 }
 
 nav a {
     text-decoration: none;
     color: #fff;
-    padding: 8px 12px;
-    border: 1px solid transparent;
+    padding: 8px 15px;
+    border: 3px solid transparent;
     border-radius: 5px;
     transition: border-color 0.3s;
 }
@@ -59,38 +73,73 @@ nav a:hover {
     border-color: #333;
 }
 
+@media only screen and (max-width: 600px)
+{
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding-top: 3%;
+        padding-bottom: 2%;
+        width: 100%;
+        background-color: #333;
+        /* Add background color to the navigation */
+        z-index: 1000;
+        /* Set a high z-index to ensure it's above other elements */
+    }
+    nav a {
+        text-decoration: none;
+        color: #fff;
+        padding: 3px 5px;
+        border: 3px solid transparent;
+        border-radius: 5px;
+        transition: border-color 0.3s;
+    }
+}
+
 /* Displaying projects */
 
 .projects {
     display: flex;
-    flex-direction: column; /* Stack projects vertically */
-    gap: 20px; /* Add space between each project */
-    max-width: 1000px; /* Limit the width of the whole section */
-    margin: 20px auto; /* Center the section and add vertical margin */
-    padding: 10px; /* Optional padding inside the container */
+    flex-direction: column;
+    /* Stack projects vertically */
+    gap: 20px;
+    /* Add space between each project */
+    max-width: 1000px;
+    /* Limit the width of the whole section */
+    margin: 20px auto;
+    /* Center the section and add vertical margin */
+    padding: 10px;
+    /* Optional padding inside the container */
 }
 
 /* Ensure the anchor tag fills the space */
 a.project-link {
     display: block;
-    text-decoration: none; /* Remove underline from the link */
-    color: inherit; /* Inherit the text color */
+    text-decoration: none;
+    /* Remove underline from the link */
+    color: inherit;
+    /* Inherit the text color */
 }
 
 /* Style the project container */
 .project {
     display: flex;
     align-items: center;
-    gap: 20px; /* Space between image and text */
+    gap: 20px;
+    /* Space between image and text */
     border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth hover effect */
 }
 
 /* Hover effect for the entire project container */
 a.project-link:hover .project {
-    transform: translateY(-5px); /* Slight move up on hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    transform: translateY(-5px);
+    /* Slight move up on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow effect */
 }
 
 /* Image styling */
@@ -99,8 +148,10 @@ a.project-link:hover .project {
     height: 180px;
     background-size: cover;
     background-position: center;
-    flex-shrink: 0; /* Prevent image from shrinking */
-    transition: transform 0.3s ease; /* Smooth hover effect for the image */
+    flex-shrink: 0;
+    /* Prevent image from shrinking */
+    transition: transform 0.3s ease;
+    /* Smooth hover effect for the image */
 }
 
 /* Project details grow to fill space */
@@ -119,7 +170,8 @@ a.project-link:hover .project {
 
 /* Additional hover effect for the image */
 a.project-link:hover .button {
-    transform: scale(1.05); /* Slight zoom-in effect */
+    transform: scale(1.05);
+    /* Slight zoom-in effect */
 }
 
 /* Responsive design for smaller screens */
@@ -130,9 +182,9 @@ a.project-link:hover .button {
     }
 
     .project .button {
-        width: 100%;
+        width: 70%;
         height: 0;
-        padding-bottom: 100%;
+        padding-bottom: 70%;
     }
 
     .project-details {
@@ -140,52 +192,115 @@ a.project-link:hover .button {
     }
 }
 
+/* Back Button Styles */
+.back-button-container {
+    position: fixed;
+    top: 20%;
+    left: 5%;
+    z-index: 1000;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+}
+
+@media only screen and (max-width: 1250px) {
+    .back-button-container {
+        position: fixed;
+        top: 9%;
+        left: 10px;
+        z-index: 1000;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .back-button-container {
+        position: fixed;
+        top: 9%;
+        left: 2px;
+        z-index: 1000;
+    }
+}
+
 
 /* About Me */
 /* General styles for the about section */
 .about {
-    max-width: 1000px;  /* Limit the width of the section */
-    margin: 20px auto;  /* Center the section and add margin */
-    padding: 20px;  /* Optional padding */
-    display: flex;  /* Flexbox layout */
-    align-items: center;  /* Vertically align the image and text */
-    gap: 20px;  /* Space between image and text */
+    max-width: 1000px;
+    /* Limit the width of the section */
+    margin: 20px auto;
+    /* Center the section and add margin */
+    padding: 20px;
+    /* Optional padding */
+    display: flex;
+    /* Flexbox layout */
+    align-items: top;
+    /* Vertically align the image and text */
+    gap: 20px;
+    /* Space between image and text */
 }
 
 /* Styling for the image */
 .about-image {
-    width: 250px;  /* Adjust the width of the image */
-    height: auto;  /* Maintain aspect ratio */
-    border-radius: 50%;  /* Optional: Make the image round */
-    object-fit: cover;  /* Ensure the image doesn't stretch */
-    flex-shrink: 0;  /* Prevent the image from shrinking */
+    width: 30%;
+    /* Adjust the width of the image */
+    height: fit-content;
+    /* Maintain aspect ratio */
+    border-radius: 50%;
+    /* Optional: Make the image round */
+    object-fit: cover;
+    /* Ensure the image doesn't stretch */
+    flex-shrink: 0;
+    /* Prevent the image from shrinking */
 }
 
 /* Styling for the text section */
 .about-text {
-    flex-grow: 1;  /* Let the text take up remaining space */
+    flex-grow: 1;
+    /* Let the text take up remaining space */
 }
 
 .about-text h2 {
-    font-size: 2em;  /* Adjust heading size */
-    margin-top: 0;  /* Remove top margin */
+    font-size: 2em;
+    /* Adjust heading size */
+    margin-top: 0;
+    /* Remove top margin */
 }
 
 .about-text p {
-    font-size: 1.1em;  /* Adjust paragraph size */
-    line-height: 1.5;  /* Improve readability */
+    font-size: 1.1em;
+    /* Adjust paragraph size */
+    line-height: 1.5;
+    /* Improve readability */
 }
 
 /* Responsive design for smaller screens */
 @media only screen and (max-width: 600px) {
     .about {
-        flex-direction: column;  /* Stack image and text vertically */
-        text-align: center;  /* Center-align text */
+        flex-direction: column;
+        /* Stack image and text vertically */
+        text-align: center;
+        /* Center-align text */
+        align-items: center;
     }
 
     .about-image {
-        width: 150px;  /* Reduce image size on small screens */
-        margin-bottom: 20px;  /* Add margin below the image */
+        width: 250px;
+        /* Reduce image size on small screens */
+        margin-bottom: 20px;
+        /* Add margin below the image */
     }
 }
 
@@ -198,13 +313,15 @@ a.project-link:hover .button {
     align-items: flex-start;
     max-width: 1000px;
     margin: 20px auto;
-    padding: 50px;
+    padding: 8%;
+    padding-bottom: 0px;
     gap: 20px;
 }
 
 /* Project Information section (General info) */
 .project-info {
-    flex-basis: 40%; /* Take up 40% of the width */
+    flex-basis: 40%;
+    /* Take up 40% of the width */
     border-right: 1px solid #ccc;
     padding-right: 20px;
 }
@@ -223,7 +340,8 @@ a.project-link:hover .button {
 }
 
 .project-info a {
-    color: #007bff; /* Link color */
+    color: #007bff;
+    /* Link color */
     text-decoration: none;
 }
 
@@ -233,13 +351,16 @@ a.project-link:hover .button {
 
 /* Project Image */
 .project-image {
-    flex-basis: 50%; /* Take up 50% of the width */
-    text-align: center; /* Center the image */
+    flex-basis: 35%;
+    /* Take up 50% of the width */
+    text-align: center;
+    /* Center the image */
 }
 
 .project-image img {
     max-width: 100%;
-    height: auto; /* Maintain aspect ratio */
+    height: auto;
+    /* Maintain aspect ratio */
     border-radius: 10px;
 }
 
@@ -261,8 +382,10 @@ a.project-link:hover .button {
     display: block;
     margin: 20px auto;
     max-width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px; /* Optional: round the corners */
+    height: auto;
+    /* Maintain aspect ratio */
+    border-radius: 10px;
+    /* Optional: round the corners */
 }
 
 /* Responsive adjustments */
