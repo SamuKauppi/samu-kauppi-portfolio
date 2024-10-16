@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Byte Defence</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="personal.html">Personal Projects</a></li>
+            <li><a href="work.html">Work Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="personal.html" class="back-button">←</a>
+    </div>
+
+    <section class="project-template">
+        <div class="project-info">
+            <h2>Flight Game</h2>
+            <ul>
+                <li><strong>GitHub:</strong> <a href="https://github.com/SamuKauppi/Pulse-project"
+                        target="_blank"> Link to the Repository</a></li>
+                <li><strong>Created:</strong> Sebtember 2022 - December 2022</li>
+                <li><strong>Tech Stack:</strong> Python, MicroPython, JavaScript, HTML, CSS, MySQL</li>
+            </ul>
+        </div>
+        <div class="project-image">
+            <img src="./content/pulse_project.jpg" alt="Project Image">
+        </div>
+    </section>
+    <section class="project-description">
+        <p>
+            Pulse Project was the last project we did during our first year of studying at Metropolia. The goal was to
+            program a Raspberry PI Pico w to measure pulse. The instructions for this project were a bit unclear so we
+            ended up doing a backend and frontend system for this project. We almost made a database as well but that
+            proved too much for the given time we had.
+        </p>
+
+        <p>
+            During this project I mainly focused on coding the Raspberry and measuring the pulse. This proved to be very
+            challenging since Raspberry PI Pico w is coded in MircoPython. MicroPython is a lean and efficient
+            implementation of the Python 3 programming language that includes a small subset of the Python standard
+            library and is optimised to run on microcontrollers and in constrained environments. This sounds nice but
+            finding documentation for MircoPython was difficult and was often lacking. But in the end, I managed to
+            create a working pulse meter.
+        </p>
+        <p>
+            The way this project works is by storing the data collected by the sensor into to a FIFO-list (first in
+            first out). It then reads the values, determines if a pulse happened and measures time between pulses. Once
+            it has gathered enough data to determine a valid heartbeat, it sends the data to a cloud service to analyse
+            by an API call. The return value is then sent to the server made by other project members. While the sensor
+            gathers data, it displays some data on a small screen on the Raspberry PI.
+        </p>
+        <p>
+            Overall, this project proved to be challenging but definitely my favourite Python project that I have ever
+            done.
+        </p>
+    </section>
+
+</body>
+
+</html>
