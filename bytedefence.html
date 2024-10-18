@@ -47,6 +47,151 @@
             I then took a break from it because the studies became more intensive, and I didn’t have enough free time to
             work on it.
         </p>
+        <p>
+            It was during this time I learned about pathfinding algorithms. For this project I decided to try to
+            implement a pathfinding algorithm called A*. The idea was to make a classic tower defence game where player
+            can place a tower anywhere and enemies find their path around towers, but I didn’t want to use the built in
+            pathfinding in Unity. This made this project an interesting coding task. I found this great website where A*
+            was created for Python and I simply implemented it into Unity. At the time I didn’t understand the
+            differences between pathfinding algorithms, so I thought I was making A* but I what I really did was
+            breadth-first search (BFS). It works perfectly fine for this but A* is more optimal. Here is how the
+            pathfinding works:
+        </p>
+
+        <pre><code>
+            // Initialize pathpoint list with endpoint at start
+            List<PathPoint> points = new()
+            {
+                endPoint
+            };
+            // Determine positions of pathpoints
+            float xPos = startingXPosition;
+            float yPos = 0f;
+            // Determine x and y indexes
+            int yIndex = 0;
+            int xIndex = 0;
+            // Continue loop until yPos is over both top and bot mapHeight
+            while (MathF.Abs(yPos) <= mapheight - topYPosOffset || MathF.Abs(yPos) <= mapheight - botYPosOffset)
+            {
+                if ((yPos >= 0 && yPos <= mapheight - topYPosOffset) ||
+                    (yPos < 0 && yPos >= -(mapheight - botYPosOffset)))
+                {
+                    while (xPos >= -mapwidth)
+                    {
+                        xIndex++;
+                        points.Add(CreatePathpoint(new Vector3(xPos, yPos), new PathfindingID(xIndex, yIndex)));
+                        xPos -= positionStep;
+                    }
+                }
+           
+                xPos = startingXPosition;
+                xIndex = 0;
+                if (yPos > 0)
+                {
+                    yPos *= -1f;
+                    yIndex *= -1;
+                }
+                else
+                {
+                    yPos = Math.Abs(yPos) + positionStep;
+                    yIndex = Math.Abs(yIndex) + 1;
+                }
+            }
+            pathPoints = points.ToArray();
+        </code></pre>
+
+        <p>
+            First the code creates a grid of ‘PathPoints’ and inserting end point as first value. Each PathPoint is
+            given an index value for both x and y. These indices represent how far given point is from end point.
+        </p>
+
+        <pre><code>
+                /// <summary>
+                /// Determine neighbours for pathpoints
+                /// </summary>
+                /// <param name="currentPoint"></param>
+                /// <returns></returns>
+                private PathPoint[] DetermineNeighbours(PathPoint currentPoint)
+                {
+                    // Make list to save neighbours
+                    List<PathPoint> neighbours = new();
+                    for (int i = 0; i < pathPoints.Length; i++)
+                    {
+                        int xDifference = Math.Abs(pathPoints[i].ID.x - currentPoint.ID.x);
+                        int yDifference = Math.Abs(pathPoints[i].ID.y - currentPoint.ID.y);
+            
+                        // If pathpoint is directly LEFT, RIGHT, UP, DOWN, or DIAGONAL
+                        // Add it as a neighbour
+                        if ((xDifference == 1 && yDifference == 0) || // Horizontal
+                            (xDifference == 0 && yDifference == 1) || // Vertical
+                            (xDifference == 1 && yDifference == 1))   // Diagonal
+                        {
+                            neighbours.Add(pathPoints[i]);
+                        }
+                    }
+            
+                    return neighbours.OrderBy(p => Mathf.Abs(p.ID.x) + Mathf.Abs(p.ID.y)).ToArray();
+                }
+        </code></pre>
+
+        <p>
+            After every PathPoint is created, the code iterates through it once again to determine neighbours.
+            Neighbours are the key to determining the pathfinding. The neighbours are sorted based on how close they are
+            to (0, 0).
+        </p>
+
+        <code><pre>
+                /// <summary>
+                /// Calculate pathfinding
+                /// </summary>
+                private void RecalculateDistancesAStar()
+                {
+                    // Create queue and dictionary with the first point as first value
+                    // Dictionary value is int (number of steps from start)
+                    Queue<PathPoint> frontier = new();
+                    frontier.Enqueue(pathPoints[0]);
+                    Dictionary<PathPoint, int> pathPointChecked = new()
+                    {
+                        { pathPoints[0], 0 }
+                    };
+               
+                    // As long as there is a pathpoint to check, continue on checking
+                    while (frontier.Count > 0)
+                    {
+                        // Get the next pathpoint from queue
+                        PathPoint current = frontier.Dequeue();
+                        // Get it's neighbours and go through them
+                        PathPoint[] currentNeighbours = current.Neighbours;
+                        foreach (PathPoint pathPoint in currentNeighbours)
+                        {
+                            // If this neighbouring pathpoint has not been already been checked and is pathable
+                            if (!pathPointChecked.ContainsKey(pathPoint) && pathPoint.IsPathable)
+                            {
+                                // Enqueue to check this pathpoints to check it 
+                                frontier.Enqueue(pathPoint);
+                                // Add it to dictionary and save it's own distance with current pathpoint distance + 1
+                                pathPointChecked.Add(pathPoint, 1 + current.StepsFromEnd);
+                                pathPoint.SetDistanceToEnd(1 + current.StepsFromEnd, exitPointSize);
+               
+                                // Scales the exit to contain pathpoints
+                                if (!isEndObjScaled && pathPoint.IsCloseToExit)
+                                {
+                                    DetermineEndPointDimensions(pathPoint.transform.position);
+                                }
+                            }
+                        }
+                    }
+               
+                    isEndObjScaled = true;
+                }
+        </pre></code>
+
+        <p>
+            This function determines the distance for each PathPoint and its neighbours to the end. Once player places a
+            tower, PathPoints that are under the tower are disabled and this function determines a new path to follow.
+            This system works but it’s not the most optimal pathfinding algorithm. If I decide to make a sequel to Byte
+            Defence, improving the pathfinding algorithm is one of the first tasks.
+        </p>
 
         <p>
             After selecting game studies as my major, I had a hard time coming up with a game that I wanted to do.
